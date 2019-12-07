@@ -1,14 +1,18 @@
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script>
 
-
-
-    async function checkstatus(roomid){
-        return (await (await fetch(`https://api.live.bilibili.com/room/v1/Room/room_init?id=${roomid}`)).json()).data.live_status == 1
+    function query(roomid){
+        $.ajax({
+            url: "https://api.live.bilibili.com/room/v1/Room/room_init?id="+roomid,
+            dataType: "jsonp",
+            jsonp: "callback",
+            context: document.body,
+            success: function(data) {
+                console.log(data);
+            }
+        });
     }
 
-    async function test(){
-        console.log (await checkstatus(412))
-    }
-    test()
+    query(412)
 
 </script>
