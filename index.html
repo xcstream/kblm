@@ -1,0 +1,14 @@
+<script>
+
+
+
+    async function checkstatus(roomid){
+        return (await (await fetch(`https://api.live.bilibili.com/room/v1/Room/room_init?id=${roomid}`)).json()).data.live_status == 1
+    }
+
+    async function test(){
+        console.log (await checkstatus(412))
+    }
+    test()
+
+</script>
